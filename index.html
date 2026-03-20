@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Girls Zone | Trendy Fashion</title>
+    <style>
+        :root { --pink: #ff66b2; --purple: #9b59b6; --light: #fff0f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--light); margin: 0; padding: 0; text-align: center; }
+        nav { background: white; padding: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--pink); font-weight: bold; }
+        .hero { 
+            background: linear-gradient(45deg, var(--pink), var(--purple)); 
+            color: white; padding: 80px 20px; margin: 20px; border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(255, 102, 178, 0.3);
+        }
+        .btn { 
+            background: white; color: var(--pink); padding: 15px 30px; 
+            border-radius: 50px; border: none; font-size: 1.2rem; cursor: pointer;
+            transition: 0.3s; font-weight: bold;
+        }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+    </nav>
+
+    <div class="hero">
+        <h1>Welcome to Girls Zone ✨</h1>
+        <p>Your one-stop shop for dresses, makeup, and jewelry!</p>
+        <button class="btn" onclick="location.href='shop.html'">Start Shopping</button>
+    </div>
+
+    <div style="padding: 40px;">
+        <h2>Trending Now 👗</h2>
+        <p>Check out our latest arrivals for the season.</p>
+    </div>
+</body>
+</html>
