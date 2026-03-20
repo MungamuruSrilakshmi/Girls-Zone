@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <style>
+        body { font-family: sans-serif; background: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .product-box { padding: 50px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 1px solid #eee; text-align: center; max-width: 400px;}
+        h1 { color: #ff66b2; }
+        .add-btn { background: #9b59b6; color: white; border: none; padding: 15px 40px; border-radius: 50px; cursor: pointer; font-size: 1.1rem; }
+    </style>
+    
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        
+        function handleAddToCart() {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('name');
+            const price = params.get('price');
+
+            // JavaScript DataLayer Push
+            window.dataLayer.push({
+                'event': 'add_to_cart',
+                'ecommerce': {
+                    'currency': 'USD',
+                    'value': parseFloat(price),
+                    'items': [{ 'item_name': name, 'price': parseFloat(price), 'quantity': 1 }]
+                }
+            });
+
+            alert(name + " added to bag!");
+            // Redirect to checkout
+            window.location.href = "checkout.html?name=" + name + "&price=" + price;
+        }
+    </script>
+</head>
+<body>
+    <div class="product-box">
+        <h1 id="title">Product Name</h1>
+        <h2 id="price" style="color: #666;">$0.00</h2>
+        <p>Hand-picked for the Girls Zone collection. High quality and trendy design.</p>
+        <button class="add-btn" onclick="handleAddToCart()">✨ Add to Cart</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('title').innerText = params.get('name');
+        document.getElementById('price').innerText = "$" + params.get('price');
+    </script>
+</body>
+</html>
