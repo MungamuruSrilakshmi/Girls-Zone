@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You | Girls Zone</title>
+    <style>
+        :root { --pink: #ff66b2; --purple: #9b59b6; }
+        body { font-family: 'Segoe UI', sans-serif; background: white; text-align: center; padding: 100px 20px; }
+        .success-icon { font-size: 80px; margin-bottom: 20px; }
+        h1 { color: var(--pink); font-size: 2.5rem; }
+        .order-box { 
+            display: inline-block; padding: 30px; border-radius: 20px; 
+            background: #fff0f6; border: 2px solid #ffc1e3; margin-top: 20px;
+        }
+        .home-btn { 
+            margin-top: 30px; display: inline-block; color: var(--purple); 
+            text-decoration: none; font-weight: bold; border-bottom: 2px solid var(--purple);
+        }
+    </style>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const total = params.get('total') || '0.00';
+            const itemName = params.get('item') || 'Fashion Item';
+            const transactionId = "GZ-" + Math.floor(Math.random() * 100000);
+
+            // AUTO-FIRE PURCHASE EVENT FOR GTM
+            window.dataLayer.push({
+                'event': 'purchase',
+                'ecommerce': {
+                    'transaction_id': transactionId,
+                    'value': parseFloat(total),
+                    'currency': 'USD',
+                    'items': [{
+                        'item_name': itemName,
+                        'price': parseFloat(total),
+                        'quantity': 1
+                    }]
+                }
+            });
+            
+            document.getElementById('order-id').innerText = transactionId;
+            document.getElementById('final-total').innerText = "$" + total;
+        };
+    </script>
+</head>
+<body>
+    <div class="success-icon">🎉</div>
+    <h1>You're All Set!</h1>
+    <p>Thank you for shopping at <strong>Girls Zone</strong>. Your style journey begins now.</p>
+
+    <div class="order-box">
+        <p>Order ID: <strong id="order-id">---</strong></p>
+        <p>Total Paid: <strong id="final-total">$0.00</strong></p>
+    </div>
+
+    <br>
+    <a href="index.html" class="home-btn">Back to Home</a>
+</body>
+</html>
