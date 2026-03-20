@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout | Girls Zone</title>
+    <style>
+        :root { --pink: #ff66b2; --purple: #9b59b6; --light: #fff0f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--light); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .checkout-card { 
+            background: white; padding: 40px; border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.1); 
+            width: 100%; max-width: 400px; text-align: center;
+        }
+        h1 { color: var(--pink); margin-bottom: 20px; }
+        .summary-box { background: #fafafa; padding: 20px; border-radius: 15px; margin-bottom: 25px; border: 1px dashed var(--pink); }
+        .total { font-size: 1.8rem; color: var(--purple); font-weight: bold; }
+        .buy-btn { 
+            background: linear-gradient(45deg, var(--pink), var(--purple)); 
+            color: white; border: none; padding: 18px; width: 100%; 
+            border-radius: 50px; cursor: pointer; font-size: 1.1rem; font-weight: bold;
+            transition: 0.3s;
+        }
+        .buy-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="checkout-card">
+        <h1>Your Selection 🛍️</h1>
+        <div class="summary-box">
+            <p id="item-display" style="font-size: 1.1rem; font-weight: bold;"></p>
+            <p class="total" id="price-display">$0.00</p>
+        </div>
+        <p style="font-size: 0.9rem; color: #888;">Secure Checkout at Girls Zone</p>
+        <button class="buy-btn" onclick="completePurchase()">Complete Order ✨</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get('name') || "Items";
+        const price = params.get('price') || "0.00";
+        
+        document.getElementById('item-display').innerText = name;
+        document.getElementById('price-display').innerText = "$" + price;
+
+        function completePurchase() {
+            // Redirect to Thank You page with the total value
+            window.location.href = "thankyou.html?total=" + price + "&item=" + name;
+        }
+    </script>
+</body>
+</html>
